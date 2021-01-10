@@ -40,6 +40,19 @@ client.on('message', async msg => {
 
             let index = Math.floor(Math.random() * json.results.length);
             msg.channel.send(json.results[index].url);
+        } else if (tokens[0] === '!joke') {
+            // API from https://sv443.net/jokeapi/v2/
+            let url = `https://v2.jokeapi.dev/joke/Any`;
+            let response = await fetch(url);
+            let json = await response.json();
+            //console.log(json);
+
+            if (json.type === 'single') {
+                msg.channel.send(json.joke);
+            } else if (json.type === 'twopart') {
+                msg.channel.send(json.setup);
+                msg.channel.send(json.delivery);
+            }   
         }
     }
 
