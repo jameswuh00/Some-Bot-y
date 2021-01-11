@@ -11,12 +11,8 @@ client.on('ready', () => {
     console.log('<3');
 });
 
-const replies = [
-    'hi',
-    'hello',
-    'hiya',
-    'hey'
-]
+const replies = ['hi', 'hello', 'hiya', 'hey'];
+
 client.on('message', async msg => {
     if (msg.author.bot) return; // don't reply to other bots
 
@@ -53,6 +49,10 @@ client.on('message', async msg => {
                 msg.channel.send(json.setup);
                 msg.channel.send(json.delivery);
             }   
+        } else if (tokens[0] === '!g') {
+            if (tokens[1] === 'resin') {
+                msg.channel.send('Don\'t forget to use your resin!');
+            }
         }
     }
 
